@@ -47,7 +47,7 @@ jobs:
       - name: Checkout sql_mm
         uses: actions/checkout@v4
         with:
-          path: mysql_mm
+          path: sql_mm
           submodules: recursive
 
       - name: Checkout MM:Source
@@ -75,7 +75,7 @@ jobs:
           cd ambuild && python setup.py install && cd ..
 
       - name: Build
-        working-directory: mysql_mm
+        working-directory: sql_mm
         shell: bash
         run: |
           mkdir build && cd build
@@ -85,8 +85,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: mysql_mm-${{ runner.os }}-${{ github.run_number }}
-          path: mysql_mm/build/package
-          local_dir: mysql_mm/build/package
+          name: sql_mm-${{ runner.os }}-${{ github.run_number }}
+          path: sql_mm/build/package
+          local_dir: sql_mm/build/package
           server_dir: /build/${{ github.run_number }}/
           secure: false
